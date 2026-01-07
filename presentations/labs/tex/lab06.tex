@@ -1,0 +1,201 @@
+\documentclass[aspectratio=169,12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{array}
+
+% ===== Theme =====
+\usetheme{Madrid}
+
+% ===== Colors =====
+\definecolor{spublue}{RGB}{0,102,179}
+\definecolor{spulight}{RGB}{230,242,255}
+
+% ===== Beamer Colors =====
+\setbeamercolor{palette primary}{bg=spublue,fg=white}
+\setbeamercolor{palette secondary}{bg=spublue!80,fg=white}
+\setbeamercolor{palette tertiary}{bg=spublue!60,fg=white}
+\setbeamercolor{palette quaternary}{bg=spublue,fg=white}
+\setbeamercolor{structure}{fg=spublue}
+\setbeamercolor{frametitle}{bg=spublue,fg=white}
+
+% ===== Title Page - White text on Blue =====
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{title}{fg=white,bg=spublue}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{institute}{fg=gray}
+\setbeamercolor{date}{fg=spublue}
+
+% ===== Custom Title Page =====
+\setbeamertemplate{title page}{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5cm,dp=0.5cm,center]{palette primary}
+        \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\\[0.3cm]
+        \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle
+    \end{beamercolorbox}
+    \vspace{0.5cm}
+    \begin{center}
+        \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\\[0.3cm]
+        \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\\[0.3cm]
+        \usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate
+    \end{center}
+}
+
+% ===== Remove navigation =====
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% ===== Code style =====
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}
+
+% ===== Title =====
+\title{Lab 6: RAG + Local LLM + Streamlit}
+\subtitle{CSI403 - Full Stack Development}
+\author{Faculty of Information Technology}
+\institute{Sripatum University}
+\date{Weight: 3.75\%}
+
+\begin{document}
+
+% Title slide
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+% Objectives
+\begin{frame}{Objectives}
+\begin{itemize}
+    \item[$\checkmark$] Setup Ollama
+    \item[$\checkmark$] Complete RAG pipeline
+    \item[$\checkmark$] Run Streamlit UI
+\end{itemize}
+\vfill
+\textbf{Repository:} \url{https://github.com/amornpan/Generic-RAG}
+\end{frame}
+
+% Task 1
+\begin{frame}{Task 1: Install Ollama}
+\begin{enumerate}
+    \item Download from \textcolor{spublue}{\url{https://ollama.ai}}
+    \item Install and run
+\end{enumerate}
+\vfill
+\begin{center}
+\fcolorbox{spublue}{spulight}{\parbox{0.8\textwidth}{
+\centering
+\textbf{Ollama} runs LLMs locally on your machine.\\No API keys or cloud services required!
+}}
+\end{center}
+\end{frame}
+
+% Task 2
+\begin{frame}[fragile]{Task 2: Pull Model}
+\begin{lstlisting}[language=bash]
+ollama pull qwen2.5:7b
+\end{lstlisting}
+\vfill
+\textbf{Model Info:}
+\begin{itemize}
+    \item \textbf{qwen2.5:7b} - 7 billion parameters
+    \item Good balance of quality and speed
+    \item Requires ~8GB RAM
+\end{itemize}
+\end{frame}
+
+% Task 3
+\begin{frame}[fragile]{Task 3: Test LLM}
+\begin{lstlisting}[language=bash]
+ollama run qwen2.5:7b
+\end{lstlisting}
+\vfill
+Try asking:
+\begin{lstlisting}
+>>> What is RAG?
+\end{lstlisting}
+\vfill
+Press \texttt{Ctrl+D} to exit.
+\end{frame}
+
+% Task 4
+\begin{frame}[fragile]{Task 4: Run API with LLM}
+\begin{lstlisting}[language=bash]
+cd Generic-RAG
+python api.py
+\end{lstlisting}
+\vfill
+The API now connects to:
+\begin{itemize}
+    \item \textbf{OpenSearch} - for document retrieval
+    \item \textbf{Ollama} - for LLM generation
+\end{itemize}
+\end{frame}
+
+% Task 5
+\begin{frame}[fragile]{Task 5: Run Streamlit}
+\begin{lstlisting}[language=bash]
+streamlit run app.py
+\end{lstlisting}
+\vfill
+\begin{center}
+Opens at \textcolor{spublue}{\texttt{http://localhost:8501}}
+\end{center}
+\end{frame}
+
+% Task 6
+\begin{frame}{Task 6: Test Complete Flow}
+\begin{enumerate}
+    \item Open \textcolor{spublue}{\url{http://localhost:8501}}
+    \item Ask questions about your documents
+    \item Verify RAG responses include context
+\end{enumerate}
+\vfill
+\begin{center}
+\fcolorbox{spublue}{spulight}{\parbox{0.8\textwidth}{
+\centering
+\textbf{RAG Flow:}\\
+Query $\rightarrow$ Search $\rightarrow$ Retrieve Context $\rightarrow$ LLM $\rightarrow$ Response
+}}
+\end{center}
+\end{frame}
+
+% Task 7
+\begin{frame}{Task 7: Modify Prompt}
+Edit the prompt template in \texttt{api.py}:
+\vfill
+\begin{itemize}
+    \item Find the prompt template
+    \item Customize instructions
+    \item Test with different prompts
+\end{itemize}
+\end{frame}
+
+% Deliverables
+\begin{frame}{Deliverables}
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Item} & \textbf{Check} \\
+\hline
+Ollama running & $\square$ \\
+LLM tested & $\square$ \\
+Complete RAG working & $\square$ \\
+Streamlit UI working & $\square$ \\
+\hline
+\end{tabular}
+\end{center}
+\vfill
+\begin{center}
+\Large\textcolor{red}{\textbf{Deadline: Sunday 23:59}}
+\end{center}
+\end{frame}
+
+\end{document}

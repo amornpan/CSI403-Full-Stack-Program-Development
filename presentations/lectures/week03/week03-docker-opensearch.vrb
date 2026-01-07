@@ -1,0 +1,11 @@
+\frametitle{Run OpenSearch}
+\begin{lstlisting}[language=bash]
+docker run -d --name opensearch-node \
+  -p 9200:9200 -p 9600:9600 \
+  -e "discovery.type=single-node" \
+  -e "DISABLE_SECURITY_PLUGIN=true" \
+  opensearchproject/opensearch:2.11.1
+
+# Verify
+curl http://localhost:9200
+    \end{lstlisting}

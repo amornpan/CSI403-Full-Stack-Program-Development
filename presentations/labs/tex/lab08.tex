@@ -1,0 +1,198 @@
+\documentclass[aspectratio=169,12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{array}
+
+% ===== Theme =====
+\usetheme{Madrid}
+
+% ===== Colors =====
+\definecolor{spublue}{RGB}{0,102,179}
+\definecolor{spulight}{RGB}{230,242,255}
+
+% ===== Beamer Colors =====
+\setbeamercolor{palette primary}{bg=spublue,fg=white}
+\setbeamercolor{palette secondary}{bg=spublue!80,fg=white}
+\setbeamercolor{palette tertiary}{bg=spublue!60,fg=white}
+\setbeamercolor{palette quaternary}{bg=spublue,fg=white}
+\setbeamercolor{structure}{fg=spublue}
+\setbeamercolor{frametitle}{bg=spublue,fg=white}
+
+% ===== Title Page - White text on Blue =====
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{title}{fg=white,bg=spublue}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{institute}{fg=gray}
+\setbeamercolor{date}{fg=spublue}
+
+% ===== Custom Title Page =====
+\setbeamertemplate{title page}{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5cm,dp=0.5cm,center]{palette primary}
+        \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\\[0.3cm]
+        \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle
+    \end{beamercolorbox}
+    \vspace{0.5cm}
+    \begin{center}
+        \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\\[0.3cm]
+        \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\\[0.3cm]
+        \usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate
+    \end{center}
+}
+
+% ===== Remove navigation =====
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% ===== Code style =====
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}
+
+% ===== Title =====
+\title{Lab 8: CI/CD + Testing}
+\subtitle{CSI403 - Full Stack Development}
+\author{Faculty of Information Technology}
+\institute{Sripatum University}
+\date{Weight: 3.75\%}
+
+\begin{document}
+
+% Title slide
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+% Objectives
+\begin{frame}{Objectives}
+\begin{itemize}
+    \item[$\checkmark$] Write pytest tests
+    \item[$\checkmark$] Create CI/CD pipeline
+    \item[$\checkmark$] Setup GitHub Actions
+\end{itemize}
+\vfill
+\textbf{Repository:} \url{https://github.com/amornpan/Advanced-RAG-Docker}
+\end{frame}
+
+% Task 1
+\begin{frame}[fragile]{Task 1: Write test\_api.py}
+\begin{lstlisting}[language=Python,basicstyle=\ttfamily\footnotesize]
+import pytest
+from fastapi.testclient import TestClient
+from api import app
+
+client = TestClient(app)
+
+def test_health():
+    response = client.get("/health")
+    assert response.status_code == 200
+    assert response.json()["status"] == "healthy"
+
+def test_search():
+    response = client.post("/search", 
+        json={"query": "test", "top_k": 5})
+    assert response.status_code == 200
+\end{lstlisting}
+\end{frame}
+
+% Task 2
+\begin{frame}[fragile]{Task 2: Run Tests}
+\begin{lstlisting}[language=bash]
+# Run tests with verbose output
+pytest tests/ -v
+
+# Run with coverage report
+pytest tests/ --cov=. --cov-report=html
+\end{lstlisting}
+\vfill
+\begin{center}
+\fcolorbox{spublue}{spulight}{\parbox{0.8\textwidth}{
+\centering
+Coverage report shows how much code\\is tested by your tests.
+}}
+\end{center}
+\end{frame}
+
+% Task 3
+\begin{frame}[fragile]{Task 3: Create Jenkinsfile}
+\begin{lstlisting}[language=bash,basicstyle=\ttfamily\footnotesize]
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps { sh 'docker-compose build' }
+        }
+        stage('Test') {
+            steps { sh 'pytest tests/' }
+        }
+        stage('Deploy') {
+            steps { sh 'docker-compose up -d' }
+        }
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+% Task 4
+\begin{frame}[fragile]{Task 4: Create GitHub Actions}
+Create \texttt{.github/workflows/ci.yml}:
+\begin{lstlisting}[language=bash,basicstyle=\ttfamily\footnotesize]
+name: CI/CD
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker-compose build
+      - run: docker-compose up -d
+      - run: sleep 60
+      - run: curl -f http://localhost:8006/health
+\end{lstlisting}
+\end{frame}
+
+% CI/CD Pipeline
+\begin{frame}{CI/CD Pipeline Overview}
+\begin{center}
+\Large
+\textbf{Push} $\rightarrow$ \textbf{Build} $\rightarrow$ \textbf{Test} $\rightarrow$ \textbf{Deploy}
+\end{center}
+\vfill
+\begin{itemize}
+    \item \textbf{Push:} Code pushed to GitHub
+    \item \textbf{Build:} Docker images built
+    \item \textbf{Test:} Automated tests run
+    \item \textbf{Deploy:} Services deployed
+\end{itemize}
+\end{frame}
+
+% Deliverables
+\begin{frame}{Deliverables}
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Item} & \textbf{Check} \\
+\hline
+Tests written & $\square$ \\
+Tests passing & $\square$ \\
+Jenkinsfile created & $\square$ \\
+GitHub Actions workflow & $\square$ \\
+Documentation & $\square$ \\
+\hline
+\end{tabular}
+\end{center}
+\vfill
+\begin{center}
+\Large\textcolor{red}{\textbf{Deadline: Sunday 23:59}}
+\end{center}
+\end{frame}
+
+\end{document}

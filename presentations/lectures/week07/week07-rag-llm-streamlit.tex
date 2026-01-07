@@ -1,0 +1,128 @@
+% Week 7: Local LLM + RAG Pipeline + Streamlit
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,breaklines=true}
+
+% === PURPLE THEME ===
+\definecolor{maincolor}{RGB}{138,43,226}
+\definecolor{accentcolor}{RGB}{186,85,211}
+\definecolor{lightpurple}{RGB}{230,190,255}
+
+\setbeamercolor{structure}{fg=maincolor}
+\setbeamercolor{palette primary}{bg=maincolor,fg=white}
+\setbeamercolor{palette secondary}{bg=accentcolor,fg=white}
+\setbeamercolor{palette tertiary}{bg=maincolor,fg=white}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=white,bg=maincolor}
+\setbeamercolor{block title}{bg=maincolor,fg=white}
+\setbeamercolor{block body}{bg=lightpurple!30}
+\setbeamercolor{titlelike}{fg=white,bg=maincolor}
+
+\title{Week 7: Local LLM + RAG + Streamlit}
+\subtitle{Full Stack RAG with Local LLM}
+\date{Semester 2/2568}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Agenda}
+    \tableofcontents
+\end{frame}
+
+\section{Ollama}
+
+\begin{frame}{What is Ollama?}
+    \textbf{Local LLM Runtime}
+    \begin{itemize}
+        \item Run LLMs locally
+        \item No API key
+        \item Free unlimited
+        \item Data stays local
+    \end{itemize}
+    \textbf{We use: qwen2.5:7b}
+\end{frame}
+
+\begin{frame}[fragile]{Ollama Commands}
+    \begin{lstlisting}[language=bash]
+# Pull model
+ollama pull qwen2.5:7b
+
+# Run
+ollama run qwen2.5:7b
+
+# API at http://localhost:11434
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Call from Python}
+    \begin{lstlisting}[language=python]
+import requests
+
+response = requests.post(
+    "http://localhost:11434/api/generate",
+    json={
+        "model": "qwen2.5:7b",
+        "prompt": "What is RAG?",
+        "stream": False
+    }
+)
+print(response.json()["response"])
+    \end{lstlisting}
+\end{frame}
+
+\section{RAG Pipeline}
+
+\begin{frame}{RAG Flow}
+    \textbf{Question → Embed → Search → Context → LLM → Answer}
+    \begin{enumerate}
+        \item Embed question (bge-m3)
+        \item Search OpenSearch
+        \item Build context
+        \item Send to Ollama
+        \item Return answer
+    \end{enumerate}
+\end{frame}
+
+\section{Streamlit}
+
+\begin{frame}[fragile]{Streamlit UI}
+    \begin{lstlisting}[language=python]
+import streamlit as st
+
+st.title("RAG Q&A")
+
+if prompt := st.chat_input("Ask..."):
+    st.chat_message("user").write(prompt)
+    response = call_api(prompt)
+    st.chat_message("assistant").write(response)
+    \end{lstlisting}
+\end{frame}
+
+\section{Lab 6}
+
+\begin{frame}{Lab 6: Complete RAG (3.75\%)}
+    \textbf{Tasks:}
+    \begin{enumerate}
+        \item Setup Ollama
+        \item Test LLM
+        \item Run complete RAG
+        \item Run Streamlit UI
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Questions?
+        \Large Complete RAG System!
+    \end{center}
+\end{frame}
+
+\end{document}

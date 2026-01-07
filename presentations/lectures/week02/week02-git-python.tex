@@ -1,0 +1,134 @@
+% Week 2: Git + Python Fundamentals
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,breaklines=true}
+
+% === PURPLE THEME ===
+\definecolor{maincolor}{RGB}{138,43,226}
+\definecolor{accentcolor}{RGB}{186,85,211}
+\definecolor{lightpurple}{RGB}{230,190,255}
+
+\setbeamercolor{structure}{fg=maincolor}
+\setbeamercolor{palette primary}{bg=maincolor,fg=white}
+\setbeamercolor{palette secondary}{bg=accentcolor,fg=white}
+\setbeamercolor{palette tertiary}{bg=maincolor,fg=white}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=white,bg=maincolor}
+\setbeamercolor{block title}{bg=maincolor,fg=white}
+\setbeamercolor{block body}{bg=lightpurple!30}
+\setbeamercolor{titlelike}{fg=white,bg=maincolor}
+
+\title{Week 2: Git + Python Fundamentals}
+\subtitle{Full Stack RAG with Local LLM}
+\date{Semester 2/2568}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Agenda}
+    \tableofcontents
+\end{frame}
+
+\section{Git Fundamentals}
+
+\begin{frame}{Why Git?}
+    \textbf{Version Control System}
+    \begin{itemize}
+        \item Track changes in your code
+        \item Collaborate with others
+        \item Revert to previous versions
+        \item Branch for new features
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Git Basic Commands}
+    \begin{lstlisting}[language=bash]
+# Clone repository
+git clone https://github.com/amornpan/Generic-RAG.git
+
+# Check status
+git status
+
+# Add and commit
+git add .
+git commit -m "Add new feature"
+
+# Push to remote
+git push origin main
+    \end{lstlisting}
+\end{frame}
+
+\section{Python Fundamentals}
+
+\begin{frame}[fragile]{Python Data Types}
+    \begin{lstlisting}[language=python]
+# Type hints
+name: str = "RAG System"
+count: int = 42
+score: float = 0.95
+is_active: bool = True
+
+# Collections
+items: list = [1, 2, 3]
+config: dict = {"model": "bge-m3"}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Python Classes}
+    \begin{lstlisting}[language=python]
+class Document:
+    def __init__(self, title: str, content: str):
+        self.title = title
+        self.content = content
+    
+    def get_summary(self) -> str:
+        return self.content[:100] + "..."
+    \end{lstlisting}
+\end{frame}
+
+\section{Environment Setup}
+
+\begin{frame}[fragile]{Conda Environment}
+    \begin{lstlisting}[language=bash]
+# Create environment
+conda create -n rag_env python=3.10 -y
+
+# Activate
+conda activate rag_env
+
+# Install dependencies
+pip install -r requirements.txt
+    \end{lstlisting}
+\end{frame}
+
+\section{Lab 1}
+
+\begin{frame}{Lab 1: Git + Python (3.75\%)}
+    \textbf{Tasks:}
+    \begin{enumerate}
+        \item Fork Generic-RAG repository
+        \item Clone to local machine
+        \item Create conda environment
+        \item Create feature branch
+        \item Write Python OOP example
+        \item Commit and push
+    \end{enumerate}
+    \textbf{Deadline: Sunday 23:59}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Questions?
+        \Large See you in Lab 1!
+    \end{center}
+\end{frame}
+
+\end{document}

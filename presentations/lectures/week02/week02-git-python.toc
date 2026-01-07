@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Git Fundamentals}{3}{0}{1}
+\beamer@sectionintoc {2}{Python Fundamentals}{5}{0}{2}
+\beamer@sectionintoc {3}{Environment Setup}{7}{0}{3}
+\beamer@sectionintoc {4}{Lab 1}{8}{0}{4}

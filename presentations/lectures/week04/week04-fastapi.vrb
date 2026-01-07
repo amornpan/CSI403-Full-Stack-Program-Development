@@ -1,0 +1,19 @@
+\frametitle{FastAPI Example}
+\begin{lstlisting}[language=python]
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI(title="RAG API")
+
+class SearchRequest(BaseModel):
+    query: str
+    top_k: int = 5
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.post("/search")
+def search(request: SearchRequest):
+    return {"results": []}
+    \end{lstlisting}

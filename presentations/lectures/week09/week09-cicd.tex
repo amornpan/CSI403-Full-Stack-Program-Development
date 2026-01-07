@@ -1,0 +1,150 @@
+% Week 9: CI/CD Pipeline + Testing
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,breaklines=true}
+
+% === PURPLE THEME ===
+\definecolor{maincolor}{RGB}{138,43,226}
+\definecolor{accentcolor}{RGB}{186,85,211}
+\definecolor{lightpurple}{RGB}{230,190,255}
+
+\setbeamercolor{structure}{fg=maincolor}
+\setbeamercolor{palette primary}{bg=maincolor,fg=white}
+\setbeamercolor{palette secondary}{bg=accentcolor,fg=white}
+\setbeamercolor{palette tertiary}{bg=maincolor,fg=white}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=white,bg=maincolor}
+\setbeamercolor{block title}{bg=maincolor,fg=white}
+\setbeamercolor{block body}{bg=lightpurple!30}
+\setbeamercolor{titlelike}{fg=white,bg=maincolor}
+
+\title{Week 9: CI/CD + Testing}
+\subtitle{Full Stack RAG with Local LLM}
+\date{Semester 2/2568}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Agenda}
+    \tableofcontents
+\end{frame}
+
+\section{Testing}
+
+\begin{frame}{Why Testing?}
+    \begin{itemize}
+        \item Catch bugs early
+        \item Ensure quality
+        \item Enable refactoring
+        \item Documentation
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{pytest}
+    \begin{lstlisting}[language=python]
+from fastapi.testclient import TestClient
+from api import app
+
+client = TestClient(app)
+
+def test_health():
+    response = client.get("/health")
+    assert response.status_code == 200
+
+def test_search():
+    response = client.post("/search", 
+        json={"query": "test"})
+    assert response.status_code == 200
+    \end{lstlisting}
+\end{frame}
+
+\section{CI/CD}
+
+\begin{frame}{CI vs CD}
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            \textbf{CI:}
+            \begin{itemize}
+                \item Automated build
+                \item Automated testing
+                \item On every commit
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \textbf{CD:}
+            \begin{itemize}
+                \item Automated deploy
+                \item Health checks
+                \item Rollback
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{Jenkinsfile}
+    \begin{lstlisting}[language=bash]
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps { sh 'docker-compose build' }
+        }
+        stage('Test') {
+            steps { sh 'pytest tests/' }
+        }
+        stage('Deploy') {
+            steps { sh 'docker-compose up -d' }
+        }
+    }
+}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{GitHub Actions}
+    \begin{lstlisting}[language=bash]
+name: CI/CD
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker-compose build
+      - run: docker-compose up -d
+      - run: curl http://localhost:8006/health
+    \end{lstlisting}
+\end{frame}
+
+\section{Quiz 4 + Lab 8}
+
+\begin{frame}{Quiz 4 (5\%)}
+    \textbf{Topics:} Docker Compose, CI/CD, Testing
+\end{frame}
+
+\begin{frame}{Lab 8: CI/CD (3.75\%)}
+    \textbf{Tasks:}
+    \begin{enumerate}
+        \item Write pytest tests
+        \item Create Jenkinsfile
+        \item Create GitHub Actions
+        \item Document pipeline
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Questions?
+        \Large Phase 1 Complete!
+        \normalsize Next: Project (Week 10-15)
+    \end{center}
+\end{frame}
+
+\end{document}

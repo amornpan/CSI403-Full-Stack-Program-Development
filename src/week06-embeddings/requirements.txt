@@ -1,0 +1,4 @@
+llama-index-embeddings-huggingface>=0.2.0
+sentence-transformers>=2.2.0
+torch>=2.0.0
+opensearch-py>=2.4.0

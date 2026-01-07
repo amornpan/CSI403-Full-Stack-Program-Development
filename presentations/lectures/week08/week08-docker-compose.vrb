@@ -1,0 +1,11 @@
+\frametitle{Commands}
+\begin{lstlisting}[language=bash]
+# Start all
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop all
+docker-compose down
+    \end{lstlisting}

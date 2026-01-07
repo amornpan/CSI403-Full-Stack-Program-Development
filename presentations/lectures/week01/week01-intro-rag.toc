@@ -1,0 +1,6 @@
+\beamer@sectionintoc {1}{Course Overview}{3}{0}{1}
+\beamer@sectionintoc {2}{What is RAG?}{5}{0}{2}
+\beamer@sectionintoc {3}{Why Local LLM?}{7}{0}{3}
+\beamer@sectionintoc {4}{Technology Stack}{9}{0}{4}
+\beamer@sectionintoc {5}{Assessment}{10}{0}{5}
+\beamer@sectionintoc {6}{Setup}{11}{0}{6}

@@ -1,0 +1,181 @@
+\documentclass[aspectratio=169,12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{array}
+
+% ===== Theme =====
+\usetheme{Madrid}
+
+% ===== Colors =====
+\definecolor{spublue}{RGB}{0,102,179}
+\definecolor{spulight}{RGB}{230,242,255}
+
+% ===== Beamer Colors =====
+\setbeamercolor{palette primary}{bg=spublue,fg=white}
+\setbeamercolor{palette secondary}{bg=spublue!80,fg=white}
+\setbeamercolor{palette tertiary}{bg=spublue!60,fg=white}
+\setbeamercolor{palette quaternary}{bg=spublue,fg=white}
+\setbeamercolor{structure}{fg=spublue}
+\setbeamercolor{frametitle}{bg=spublue,fg=white}
+
+% ===== Title Page - White text on Blue =====
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{title}{fg=white,bg=spublue}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{institute}{fg=gray}
+\setbeamercolor{date}{fg=spublue}
+
+% ===== Custom Title Page =====
+\setbeamertemplate{title page}{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5cm,dp=0.5cm,center]{palette primary}
+        \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\\[0.3cm]
+        \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle
+    \end{beamercolorbox}
+    \vspace{0.5cm}
+    \begin{center}
+        \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\\[0.3cm]
+        \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\\[0.3cm]
+        \usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate
+    \end{center}
+}
+
+% ===== Remove navigation =====
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% ===== Code style =====
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}
+
+% ===== Title =====
+\title{Lab 3: FastAPI}
+\subtitle{CSI403 - Full Stack Development}
+\author{Faculty of Information Technology}
+\institute{Sripatum University}
+\date{Weight: 3.75\%}
+
+\begin{document}
+
+% Title slide
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+% Objectives
+\begin{frame}{Objectives}
+\begin{itemize}
+    \item[$\checkmark$] Study api.py from Generic-RAG
+    \item[$\checkmark$] Run FastAPI server
+    \item[$\checkmark$] Test API endpoints
+\end{itemize}
+\vfill
+\textbf{Repository:} \url{https://github.com/amornpan/Generic-RAG}
+\end{frame}
+
+% Task 1
+\begin{frame}{Task 1: Study api.py}
+Review the structure of \texttt{api.py}:
+\vfill
+\begin{itemize}
+    \item \textbf{FastAPI app} - Application instance
+    \item \textbf{Pydantic models} - Request/Response schemas
+    \item \textbf{Endpoints:}
+    \begin{itemize}
+        \item \texttt{/health} - Health check
+        \item \texttt{/search} - Search documents
+        \item \texttt{/query} - RAG query
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+% Task 2
+\begin{frame}[fragile]{Task 2: Run Server}
+\begin{lstlisting}[language=bash]
+cd Generic-RAG
+conda activate rag_env
+python api.py
+\end{lstlisting}
+\vfill
+\begin{center}
+\fcolorbox{spublue}{spulight}{\parbox{0.8\textwidth}{
+\centering
+Server runs on \texttt{http://localhost:9000}
+}}
+\end{center}
+\end{frame}
+
+% Task 3
+\begin{frame}[fragile]{Task 3: Test Endpoints}
+\textbf{Health check:}
+\begin{lstlisting}[language=bash]
+curl http://localhost:9000/health
+\end{lstlisting}
+\vfill
+\textbf{Search:}
+\begin{lstlisting}[language=bash]
+curl -X POST http://localhost:9000/search \
+  -H "Content-Type: application/json" \
+  -d '{"query": "test", "top_k": 5}'
+\end{lstlisting}
+\end{frame}
+
+% Task 4
+\begin{frame}{Task 4: Access Swagger Docs}
+\begin{center}
+Open in browser:\\[1em]
+\Large\textcolor{spublue}{\url{http://localhost:9000/docs}}
+\end{center}
+\vfill
+\begin{itemize}
+    \item Interactive API documentation
+    \item Test endpoints directly in browser
+    \item View request/response schemas
+\end{itemize}
+\end{frame}
+
+% Task 5
+\begin{frame}[fragile]{Task 5: Add New Endpoint}
+Add \texttt{/documents} endpoint to list all documents:
+\begin{lstlisting}[language=Python]
+@app.get("/documents")
+async def list_documents():
+    # Query OpenSearch for all documents
+    response = client.search(
+        index="documents",
+        body={"query": {"match_all": {}}}
+    )
+    return {"documents": response["hits"]["hits"]}
+\end{lstlisting}
+\end{frame}
+
+% Deliverables
+\begin{frame}{Deliverables}
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Item} & \textbf{Check} \\
+\hline
+Server running & $\square$ \\
+Endpoints tested & $\square$ \\
+New endpoint added & $\square$ \\
+Screenshots & $\square$ \\
+\hline
+\end{tabular}
+\end{center}
+\vfill
+\begin{center}
+\Large\textcolor{red}{\textbf{Deadline: Sunday 23:59}}
+\end{center}
+\end{frame}
+
+\end{document}

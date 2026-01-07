@@ -1,0 +1,11 @@
+\frametitle{Streamlit UI}
+\begin{lstlisting}[language=python]
+import streamlit as st
+
+st.title("RAG Q&A")
+
+if prompt := st.chat_input("Ask..."):
+    st.chat_message("user").write(prompt)
+    response = call_api(prompt)
+    st.chat_message("assistant").write(response)
+    \end{lstlisting}

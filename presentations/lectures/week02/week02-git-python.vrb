@@ -1,0 +1,11 @@
+\frametitle{Conda Environment}
+\begin{lstlisting}[language=bash]
+# Create environment
+conda create -n rag_env python=3.10 -y
+
+# Activate
+conda activate rag_env
+
+# Install dependencies
+pip install -r requirements.txt
+    \end{lstlisting}

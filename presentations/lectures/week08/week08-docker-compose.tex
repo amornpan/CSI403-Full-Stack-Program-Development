@@ -1,0 +1,123 @@
+% Week 8: Docker Compose (6 Services)
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,breaklines=true}
+
+% === PURPLE THEME ===
+\definecolor{maincolor}{RGB}{138,43,226}
+\definecolor{accentcolor}{RGB}{186,85,211}
+\definecolor{lightpurple}{RGB}{230,190,255}
+
+\setbeamercolor{structure}{fg=maincolor}
+\setbeamercolor{palette primary}{bg=maincolor,fg=white}
+\setbeamercolor{palette secondary}{bg=accentcolor,fg=white}
+\setbeamercolor{palette tertiary}{bg=maincolor,fg=white}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=white,bg=maincolor}
+\setbeamercolor{block title}{bg=maincolor,fg=white}
+\setbeamercolor{block body}{bg=lightpurple!30}
+\setbeamercolor{titlelike}{fg=white,bg=maincolor}
+
+\title{Week 8: Docker Compose (6 Services)}
+\subtitle{Full Stack RAG with Local LLM}
+\date{Semester 2/2568}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Agenda}
+    \tableofcontents
+\end{frame}
+
+\section{Docker Compose}
+
+\begin{frame}{What is Docker Compose?}
+    \textbf{Multi-Container Orchestration}
+    \begin{itemize}
+        \item Define multiple services
+        \item One command to start all
+        \item Manage networks/volumes
+        \item Production ready
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{docker-compose.yml}
+    \begin{lstlisting}[language=bash]
+version: '3.8'
+services:
+  opensearch_container:
+    image: opensearchproject/opensearch:2.11.1
+    ports:
+      - "9200:9200"
+  
+  frontend_container:
+    build: ./frontend
+    ports:
+      - "8501:8501"
+    \end{lstlisting}
+\end{frame}
+
+\section{6 Services}
+
+\begin{frame}{Architecture}
+    \begin{center}
+        \begin{tabular}{llc}
+            \toprule
+            \textbf{Service} & \textbf{Description} & \textbf{Port} \\
+            \midrule
+            opensearch & Vector DB & 9200 \\
+            embedding & Doc Processing & - \\
+            search\_api & Search Service & 8005 \\
+            backend & Main API & 8006 \\
+            frontend & Streamlit & 8501 \\
+            ollama & Local LLM & 11434 \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Commands}
+    \begin{lstlisting}[language=bash]
+# Start all
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop all
+docker-compose down
+    \end{lstlisting}
+\end{frame}
+
+\section{Quiz 3 + Lab 7}
+
+\begin{frame}{Quiz 3 (5\%)}
+    \textbf{Topics:} Embeddings, RAG, LLM, Streamlit
+\end{frame}
+
+\begin{frame}{Lab 7: Docker Compose (3.75\%)}
+    \textbf{Tasks:}
+    \begin{enumerate}
+        \item Clone Advanced-RAG-Docker
+        \item Run docker-compose
+        \item Verify 6 services
+        \item Test application
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Questions?
+        \Large Good luck on Quiz 3!
+    \end{center}
+\end{frame}
+
+\end{document}

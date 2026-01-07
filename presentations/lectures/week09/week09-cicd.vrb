@@ -1,0 +1,13 @@
+\frametitle{GitHub Actions}
+\begin{lstlisting}[language=bash]
+name: CI/CD
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker-compose build
+      - run: docker-compose up -d
+      - run: curl http://localhost:8006/health
+    \end{lstlisting}

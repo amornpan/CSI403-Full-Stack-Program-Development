@@ -1,0 +1,120 @@
+% Week 4: FastAPI + REST API
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,breaklines=true}
+
+% === PURPLE THEME ===
+\definecolor{maincolor}{RGB}{138,43,226}
+\definecolor{accentcolor}{RGB}{186,85,211}
+\definecolor{lightpurple}{RGB}{230,190,255}
+
+\setbeamercolor{structure}{fg=maincolor}
+\setbeamercolor{palette primary}{bg=maincolor,fg=white}
+\setbeamercolor{palette secondary}{bg=accentcolor,fg=white}
+\setbeamercolor{palette tertiary}{bg=maincolor,fg=white}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=white,bg=maincolor}
+\setbeamercolor{block title}{bg=maincolor,fg=white}
+\setbeamercolor{block body}{bg=lightpurple!30}
+\setbeamercolor{titlelike}{fg=white,bg=maincolor}
+
+\title{Week 4: FastAPI + REST API}
+\subtitle{Full Stack RAG with Local LLM}
+\date{Semester 2/2568}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Agenda}
+    \tableofcontents
+\end{frame}
+
+\section{REST API}
+
+\begin{frame}{HTTP Methods}
+    \begin{center}
+        \begin{tabular}{lll}
+            \toprule
+            \textbf{Method} & \textbf{Action} & \textbf{Example} \\
+            \midrule
+            GET & Read & Get documents \\
+            POST & Create & Create document \\
+            PUT & Update & Update document \\
+            DELETE & Delete & Delete document \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{frame}
+
+\section{FastAPI}
+
+\begin{frame}{Why FastAPI?}
+    \begin{itemize}
+        \item \textbf{Fast} - High performance
+        \item \textbf{Easy} - Intuitive syntax
+        \item \textbf{Auto Docs} - Swagger UI
+        \item \textbf{Type Hints} - Pydantic validation
+        \item \textbf{Async} - Native support
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{FastAPI Example}
+    \begin{lstlisting}[language=python]
+from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI(title="RAG API")
+
+class SearchRequest(BaseModel):
+    query: str
+    top_k: int = 5
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+@app.post("/search")
+def search(request: SearchRequest):
+    return {"results": []}
+    \end{lstlisting}
+\end{frame}
+
+\section{Quiz 1 + Lab 3}
+
+\begin{frame}{Quiz 1 (5\%)}
+    \textbf{Topics:}
+    \begin{itemize}
+        \item Git commands
+        \item Python fundamentals
+        \item Docker basics
+        \item HTTP methods
+    \end{itemize}
+    \textbf{Format:} 20 questions, 15 minutes
+\end{frame}
+
+\begin{frame}{Lab 3: FastAPI (3.75\%)}
+    \textbf{Tasks:}
+    \begin{enumerate}
+        \item Study api.py from Generic-RAG
+        \item Run FastAPI server
+        \item Test endpoints
+        \item Add new endpoint
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Questions?
+        \Large Good luck on Quiz 1!
+    \end{center}
+\end{frame}
+
+\end{document}

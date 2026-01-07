@@ -1,0 +1,202 @@
+\documentclass[aspectratio=169,12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{array}
+
+% ===== Theme =====
+\usetheme{Madrid}
+
+% ===== Colors =====
+\definecolor{spublue}{RGB}{0,102,179}
+\definecolor{spulight}{RGB}{230,242,255}
+
+% ===== Beamer Colors =====
+\setbeamercolor{palette primary}{bg=spublue,fg=white}
+\setbeamercolor{palette secondary}{bg=spublue!80,fg=white}
+\setbeamercolor{palette tertiary}{bg=spublue!60,fg=white}
+\setbeamercolor{palette quaternary}{bg=spublue,fg=white}
+\setbeamercolor{structure}{fg=spublue}
+\setbeamercolor{frametitle}{bg=spublue,fg=white}
+
+% ===== Title Page - White text on Blue =====
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{title}{fg=white,bg=spublue}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{institute}{fg=gray}
+\setbeamercolor{date}{fg=spublue}
+
+% ===== Custom Title Page =====
+\setbeamertemplate{title page}{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5cm,dp=0.5cm,center]{palette primary}
+        \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\\[0.3cm]
+        \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle
+    \end{beamercolorbox}
+    \vspace{0.5cm}
+    \begin{center}
+        \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\\[0.3cm]
+        \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\\[0.3cm]
+        \usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate
+    \end{center}
+}
+
+% ===== Remove navigation =====
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% ===== Code style =====
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}
+
+% ===== Title =====
+\title{Lab 1: Git + Python Fundamentals}
+\subtitle{CSI403 - Full Stack Development}
+\author{Faculty of Information Technology}
+\institute{Sripatum University}
+\date{Weight: 3.75\%}
+
+\begin{document}
+
+% Title slide
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+% Objectives
+\begin{frame}{Objectives}
+\begin{itemize}
+    \item[$\checkmark$] Fork and clone Generic-RAG repository
+    \item[$\checkmark$] Practice Git workflow
+    \item[$\checkmark$] Review Python fundamentals
+\end{itemize}
+\vfill
+\textbf{Repository:} \url{https://github.com/amornpan/Generic-RAG}
+\end{frame}
+
+% Task 1
+\begin{frame}{Task 1: Fork Repository}
+\begin{enumerate}
+    \item Go to \textcolor{spublue}{\url{https://github.com/amornpan/Generic-RAG}}
+    \item Click \textbf{``Fork''} button (top right)
+    \item You now have your own copy!
+\end{enumerate}
+\vfill
+\begin{center}
+\fcolorbox{spublue}{spulight}{\parbox{0.8\textwidth}{
+\centering
+\textbf{Tip:} Forking creates a personal copy of the repository\\that you can modify without affecting the original.
+}}
+\end{center}
+\end{frame}
+
+% Task 2
+\begin{frame}[fragile]{Task 2: Clone to Local}
+\begin{lstlisting}[language=bash]
+git clone https://github.com/YOUR_USERNAME/Generic-RAG.git
+cd Generic-RAG
+\end{lstlisting}
+\vfill
+\textbf{Replace} \texttt{YOUR\_USERNAME} with your GitHub username.
+\end{frame}
+
+% Task 3
+\begin{frame}[fragile]{Task 3: Setup Environment}
+\begin{lstlisting}[language=bash]
+# Create conda environment
+conda create -n rag_env python=3.10 -y
+
+# Activate environment
+conda activate rag_env
+
+# Install dependencies
+pip install -r requirements.txt
+\end{lstlisting}
+\end{frame}
+
+% Task 4
+\begin{frame}[fragile]{Task 4: Create Feature Branch}
+\begin{lstlisting}[language=bash]
+git checkout -b feature/lab01-python
+\end{lstlisting}
+\vfill
+\begin{center}
+\fcolorbox{spublue}{spulight}{\parbox{0.8\textwidth}{
+\centering
+\textbf{Git Flow:} Always create a feature branch\\for new work instead of committing to main.
+}}
+\end{center}
+\end{frame}
+
+% Task 5
+\begin{frame}[fragile]{Task 5: Write Python OOP Example}
+Create \texttt{lab01\_example.py}:
+\begin{lstlisting}[language=Python]
+class Document:
+    def __init__(self, title: str, content: str):
+        self.title = title
+        self.content = content
+    
+    def get_summary(self) -> str:
+        return self.content[:100] + "..."
+
+# Test
+doc = Document("Test", "This is a test document...")
+print(doc.get_summary())
+\end{lstlisting}
+\end{frame}
+
+% Task 6
+\begin{frame}[fragile]{Task 6: Commit and Push}
+\begin{lstlisting}[language=bash]
+# Stage all changes
+git add .
+
+# Commit with message
+git commit -m "Lab 1: Add Python OOP example"
+
+# Push to remote
+git push origin feature/lab01-python
+\end{lstlisting}
+\end{frame}
+
+% Task 7
+\begin{frame}{Task 7: Create Pull Request}
+\begin{enumerate}
+    \item Go to your repository on GitHub
+    \item Click \textbf{``Compare \& pull request''} button
+    \item Add description and create PR
+    \item \textbf{Take screenshot} of your PR
+\end{enumerate}
+\end{frame}
+
+% Deliverables
+\begin{frame}{Deliverables}
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Item} & \textbf{Check} \\
+\hline
+Forked repository & $\square$ \\
+Feature branch created & $\square$ \\
+Python file committed & $\square$ \\
+Pull Request created & $\square$ \\
+Screenshot of PR & $\square$ \\
+\hline
+\end{tabular}
+\end{center}
+\vfill
+\begin{center}
+\Large\textcolor{red}{\textbf{Deadline: Sunday 23:59}}
+\end{center}
+\end{frame}
+
+\end{document}

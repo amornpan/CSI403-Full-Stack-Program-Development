@@ -1,0 +1,126 @@
+% Week 6: Embeddings + Document Indexing
+\documentclass[aspectratio=169,11pt]{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,breaklines=true}
+
+% === PURPLE THEME ===
+\definecolor{maincolor}{RGB}{138,43,226}
+\definecolor{accentcolor}{RGB}{186,85,211}
+\definecolor{lightpurple}{RGB}{230,190,255}
+
+\setbeamercolor{structure}{fg=maincolor}
+\setbeamercolor{palette primary}{bg=maincolor,fg=white}
+\setbeamercolor{palette secondary}{bg=accentcolor,fg=white}
+\setbeamercolor{palette tertiary}{bg=maincolor,fg=white}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{fg=white,bg=maincolor}
+\setbeamercolor{block title}{bg=maincolor,fg=white}
+\setbeamercolor{block body}{bg=lightpurple!30}
+\setbeamercolor{titlelike}{fg=white,bg=maincolor}
+
+\title{Week 6: Embeddings + Document Indexing}
+\subtitle{Full Stack RAG with Local LLM}
+\date{Semester 2/2568}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Agenda}
+    \tableofcontents
+\end{frame}
+
+\section{Embeddings}
+
+\begin{frame}{What are Embeddings?}
+    \textbf{Text to Vector Conversion}
+    \begin{itemize}
+        \item Convert text to numbers
+        \item Capture semantic meaning
+        \item Similar texts = Similar vectors
+    \end{itemize}
+    \vspace{0.5cm}
+    \textbf{Example:}
+    \begin{itemize}
+        \item "Hello" → [0.12, -0.34, 0.56, ...]
+        \item 1024 dimensions (bge-m3)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Embedding Models}
+    \begin{center}
+        \begin{tabular}{lcc}
+            \toprule
+            \textbf{Model} & \textbf{Dim} & \textbf{Type} \\
+            \midrule
+            OpenAI ada-002 & 1536 & Cloud \\
+            \textbf{BAAI/bge-m3} & \textbf{1024} & \textbf{Local!} \\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+    \textbf{We use bge-m3 - No API Key!}
+\end{frame}
+
+\section{Local Embedding}
+
+\begin{frame}[fragile]{HuggingFace Embedding}
+    \begin{lstlisting}[language=python]
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+
+embed_model = HuggingFaceEmbedding(
+    model_name="BAAI/bge-m3",
+    trust_remote_code=True
+)
+
+# Create embedding - No API Key!
+vector = embed_model.get_text_embedding("Hello")
+print(len(vector))  # 1024
+    \end{lstlisting}
+\end{frame}
+
+\section{Document Chunking}
+
+\begin{frame}[fragile]{Chunking}
+    \begin{lstlisting}[language=python]
+from llama_index.core.node_parser import SentenceSplitter
+
+splitter = SentenceSplitter(
+    chunk_size=1024,
+    chunk_overlap=200
+)
+
+chunks = splitter.split_text(document_text)
+    \end{lstlisting}
+\end{frame}
+
+\section{Quiz 2 + Lab 5}
+
+\begin{frame}{Quiz 2 (5\%)}
+    \textbf{Topics:} FastAPI, OpenSearch, Pydantic, REST API
+\end{frame}
+
+\begin{frame}{Lab 5: Embeddings (3.75\%)}
+    \textbf{Tasks:}
+    \begin{enumerate}
+        \item Study embedding.py
+        \item Run document indexing
+        \item Add new documents
+        \item Test search
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+        \Huge Questions?
+        \Large Good luck on Quiz 2!
+    \end{center}
+\end{frame}
+
+\end{document}

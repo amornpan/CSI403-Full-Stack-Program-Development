@@ -1,0 +1,182 @@
+\documentclass[aspectratio=169,12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{array}
+
+% ===== Theme =====
+\usetheme{Madrid}
+
+% ===== Colors =====
+\definecolor{spublue}{RGB}{0,102,179}
+\definecolor{spulight}{RGB}{230,242,255}
+
+% ===== Beamer Colors =====
+\setbeamercolor{palette primary}{bg=spublue,fg=white}
+\setbeamercolor{palette secondary}{bg=spublue!80,fg=white}
+\setbeamercolor{palette tertiary}{bg=spublue!60,fg=white}
+\setbeamercolor{palette quaternary}{bg=spublue,fg=white}
+\setbeamercolor{structure}{fg=spublue}
+\setbeamercolor{frametitle}{bg=spublue,fg=white}
+
+% ===== Title Page - White text on Blue =====
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{title}{fg=white,bg=spublue}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{institute}{fg=gray}
+\setbeamercolor{date}{fg=spublue}
+
+% ===== Custom Title Page =====
+\setbeamertemplate{title page}{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5cm,dp=0.5cm,center]{palette primary}
+        \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\\[0.3cm]
+        \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle
+    \end{beamercolorbox}
+    \vspace{0.5cm}
+    \begin{center}
+        \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\\[0.3cm]
+        \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\\[0.3cm]
+        \usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate
+    \end{center}
+}
+
+% ===== Remove navigation =====
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% ===== Code style =====
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}
+
+% ===== Title =====
+\title{Lab 5: Embeddings}
+\subtitle{CSI403 - Full Stack Development}
+\author{Faculty of Information Technology}
+\institute{Sripatum University}
+\date{Weight: 3.75\%}
+
+\begin{document}
+
+% Title slide
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+% Objectives
+\begin{frame}{Objectives}
+\begin{itemize}
+    \item[$\checkmark$] Run embedding.py
+    \item[$\checkmark$] Understand chunking
+    \item[$\checkmark$] Add new documents
+\end{itemize}
+\vfill
+\textbf{Repository:} \url{https://github.com/amornpan/Generic-RAG}
+\end{frame}
+
+% Task 1
+\begin{frame}{Task 1: Study embedding.py}
+Review the pipeline:
+\vfill
+\begin{enumerate}
+    \item \textbf{Load} documents from \texttt{md\_corpus/}
+    \item \textbf{Chunk} documents into smaller pieces
+    \item \textbf{Create embeddings} using bge-m3 model
+    \item \textbf{Index} to OpenSearch
+\end{enumerate}
+\vfill
+\begin{center}
+\fcolorbox{spublue}{spulight}{\parbox{0.7\textwidth}{
+\centering
+\textbf{bge-m3} produces 1024-dimensional vectors\\supporting multilingual text
+}}
+\end{center}
+\end{frame}
+
+% Task 2
+\begin{frame}[fragile]{Task 2: Run Indexing}
+\begin{lstlisting}[language=bash]
+cd Generic-RAG
+conda activate rag_env
+python embedding.py
+\end{lstlisting}
+\vfill
+This will:
+\begin{itemize}
+    \item Read all \texttt{.md} files from \texttt{md\_corpus/}
+    \item Split into chunks
+    \item Generate embeddings
+    \item Store in OpenSearch
+\end{itemize}
+\end{frame}
+
+% Task 3
+\begin{frame}[fragile]{Task 3: Verify}
+\begin{lstlisting}[language=bash]
+curl http://localhost:9200/documents/_count
+\end{lstlisting}
+\vfill
+\textbf{Expected response:}
+\begin{lstlisting}[language=bash]
+{
+  "count": 42,
+  "_shards": { "total": 1, "successful": 1 }
+}
+\end{lstlisting}
+\end{frame}
+
+% Task 4-5
+\begin{frame}[fragile]{Task 4-5: Add New Documents}
+\textbf{Step 1:} Add 3 new \texttt{.md} files to \texttt{md\_corpus/} folder
+\vfill
+\textbf{Step 2:} Re-index
+\begin{lstlisting}[language=bash]
+python embedding.py
+\end{lstlisting}
+\vfill
+\textbf{Step 3:} Verify count increased
+\begin{lstlisting}[language=bash]
+curl http://localhost:9200/documents/_count
+\end{lstlisting}
+\end{frame}
+
+% Task 6
+\begin{frame}{Task 6: Test Search}
+Search for content from your new documents:
+\vfill
+\begin{itemize}
+    \item Use the API endpoint \texttt{/search}
+    \item Or test via Swagger UI
+    \item Verify your new content appears in results
+\end{itemize}
+\end{frame}
+
+% Deliverables
+\begin{frame}{Deliverables}
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Item} & \textbf{Check} \\
+\hline
+Indexing completed & $\square$ \\
+Documents verified & $\square$ \\
+New documents added & $\square$ \\
+Search tested & $\square$ \\
+\hline
+\end{tabular}
+\end{center}
+\vfill
+\begin{center}
+\Large\textcolor{red}{\textbf{Deadline: Sunday 23:59}}
+\end{center}
+\end{frame}
+
+\end{document}

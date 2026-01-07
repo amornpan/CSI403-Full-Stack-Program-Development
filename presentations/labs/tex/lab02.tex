@@ -1,0 +1,189 @@
+\documentclass[aspectratio=169,12pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{array}
+
+% ===== Theme =====
+\usetheme{Madrid}
+
+% ===== Colors =====
+\definecolor{spublue}{RGB}{0,102,179}
+\definecolor{spulight}{RGB}{230,242,255}
+
+% ===== Beamer Colors =====
+\setbeamercolor{palette primary}{bg=spublue,fg=white}
+\setbeamercolor{palette secondary}{bg=spublue!80,fg=white}
+\setbeamercolor{palette tertiary}{bg=spublue!60,fg=white}
+\setbeamercolor{palette quaternary}{bg=spublue,fg=white}
+\setbeamercolor{structure}{fg=spublue}
+\setbeamercolor{frametitle}{bg=spublue,fg=white}
+
+% ===== Title Page - White text on Blue =====
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{title}{fg=white,bg=spublue}
+\setbeamercolor{subtitle}{fg=white}
+\setbeamercolor{author}{fg=black}
+\setbeamercolor{institute}{fg=gray}
+\setbeamercolor{date}{fg=spublue}
+
+% ===== Custom Title Page =====
+\setbeamertemplate{title page}{
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5cm,dp=0.5cm,center]{palette primary}
+        \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\\[0.3cm]
+        \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle
+    \end{beamercolorbox}
+    \vspace{0.5cm}
+    \begin{center}
+        \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\\[0.3cm]
+        \usebeamerfont{institute}\usebeamercolor[fg]{institute}\insertinstitute\\[0.3cm]
+        \usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate
+    \end{center}
+}
+
+% ===== Remove navigation =====
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+% ===== Code style =====
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    columns=fullflexible
+}
+
+% ===== Title =====
+\title{Lab 2: Docker + OpenSearch}
+\subtitle{CSI403 - Full Stack Development}
+\author{Faculty of Information Technology}
+\institute{Sripatum University}
+\date{Weight: 3.75\%}
+
+\begin{document}
+
+% Title slide
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+% Objectives
+\begin{frame}{Objectives}
+\begin{itemize}
+    \item[$\checkmark$] Install Docker Desktop
+    \item[$\checkmark$] Run OpenSearch container
+    \item[$\checkmark$] Configure Hybrid Search Pipeline
+\end{itemize}
+\end{frame}
+
+% Task 1
+\begin{frame}{Task 1: Install Docker Desktop}
+\begin{enumerate}
+    \item Download from \textcolor{spublue}{\url{https://docker.com}}
+    \item Install and start Docker Desktop
+    \item Verify installation:
+\end{enumerate}
+\vfill
+\begin{center}
+\texttt{docker --version}
+\end{center}
+\vfill
+\begin{center}
+\fcolorbox{spublue}{spulight}{\parbox{0.8\textwidth}{
+\centering
+\textbf{Note:} Make sure Docker Desktop is running\\before proceeding to next tasks.
+}}
+\end{center}
+\end{frame}
+
+% Task 2
+\begin{frame}[fragile]{Task 2: Run OpenSearch}
+\begin{lstlisting}[language=bash]
+docker run -d --name opensearch-node \
+  -p 9200:9200 -p 9600:9600 \
+  -e "discovery.type=single-node" \
+  -e "DISABLE_SECURITY_PLUGIN=true" \
+  opensearchproject/opensearch:2.11.1
+\end{lstlisting}
+\vfill
+\textbf{Ports:}
+\begin{itemize}
+    \item \texttt{9200} - REST API
+    \item \texttt{9600} - Performance Analyzer
+\end{itemize}
+\end{frame}
+
+% Task 3
+\begin{frame}[fragile]{Task 3: Verify OpenSearch}
+\begin{lstlisting}[language=bash]
+curl http://localhost:9200
+\end{lstlisting}
+\vfill
+\textbf{Expected response:}
+\begin{lstlisting}[language=bash]
+{
+  "name" : "opensearch-node",
+  "cluster_name" : "docker-cluster",
+  "version" : { "number" : "2.11.1" },
+  ...
+}
+\end{lstlisting}
+\end{frame}
+
+% Task 4
+\begin{frame}[fragile]{Task 4: Setup Hybrid Search Pipeline}
+\begin{lstlisting}[language=bash,basicstyle=\ttfamily\footnotesize]
+curl -X PUT "localhost:9200/_search/pipeline/hybrid-search-pipeline" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "phase_results_processors": [{
+      "normalization-processor": {
+        "normalization": {"technique": "min_max"},
+        "combination": {
+          "technique": "arithmetic_mean",
+          "parameters": {"weights": [0.3, 0.7]}
+        }
+      }
+    }]
+  }'
+\end{lstlisting}
+\end{frame}
+
+% Task 5
+\begin{frame}[fragile]{Task 5: Check Health}
+\begin{lstlisting}[language=bash]
+curl http://localhost:9200/_cluster/health?pretty
+\end{lstlisting}
+\vfill
+\textbf{Look for:}
+\begin{itemize}
+    \item \texttt{"status": "green"} or \texttt{"yellow"}
+    \item \texttt{"number\_of\_nodes": 1}
+\end{itemize}
+\end{frame}
+
+% Deliverables
+\begin{frame}{Deliverables}
+\begin{center}
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Item} & \textbf{Check} \\
+\hline
+Docker installed & $\square$ \\
+OpenSearch running & $\square$ \\
+Pipeline created & $\square$ \\
+Screenshots & $\square$ \\
+\hline
+\end{tabular}
+\end{center}
+\vfill
+\begin{center}
+\Large\textcolor{red}{\textbf{Deadline: Sunday 23:59}}
+\end{center}
+\end{frame}
+
+\end{document}

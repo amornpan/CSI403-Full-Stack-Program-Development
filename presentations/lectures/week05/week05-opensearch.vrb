@@ -1,0 +1,16 @@
+\frametitle{Create Index}
+\begin{lstlisting}[language=python]
+index_body = {
+    "settings": {"index": {"knn": True}},
+    "mappings": {
+        "properties": {
+            "content": {"type": "text"},
+            "content_vector": {
+                "type": "knn_vector",
+                "dimension": 1024
+            }
+        }
+    }
+}
+client.indices.create(index="docs", body=index_body)
+    \end{lstlisting}

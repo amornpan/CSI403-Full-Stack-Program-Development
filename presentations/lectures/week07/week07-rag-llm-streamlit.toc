@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Ollama}{3}{0}{1}
+\beamer@sectionintoc {2}{RAG Pipeline}{6}{0}{2}
+\beamer@sectionintoc {3}{Streamlit}{7}{0}{3}
+\beamer@sectionintoc {4}{Lab 6}{8}{0}{4}

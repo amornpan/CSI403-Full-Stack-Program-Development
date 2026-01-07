@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Embeddings}{3}{0}{1}
+\beamer@sectionintoc {2}{Local Embedding}{5}{0}{2}
+\beamer@sectionintoc {3}{Document Chunking}{6}{0}{3}
+\beamer@sectionintoc {4}{Quiz 2 + Lab 5}{7}{0}{4}
