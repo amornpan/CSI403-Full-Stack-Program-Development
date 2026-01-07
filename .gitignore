@@ -280,10 +280,10 @@ presentations/labs/tex/pdf/lab08.pdf
 
 
 #presentations/lectures/week02/week02-git-python.pdf
-presentations/lectures/week03/week03-advanced-llms.pdf
-presentations/lectures/week04/week04-rag.pdf
-presentations/lectures/week05/week05-vector-databases.pdf
-presentations/lectures/week06/week06-advanced-rag.pdf
-presentations/lectures/week07/week07-local-llms.pdf
-presentations/lectures/week08/week08-deployment.pdf
-
+presentations/lectures/week03/week03-docker-opensearch.pdf
+presentations/lectures/week04/week04-fastapi.pdf
+presentations/lectures/week05/week05-opensearch.pdf
+presentations/lectures/week06/week06-embeddings.pdf
+presentations/lectures/week07/week07-rag-llm-streamlit.pdf
+presentations/lectures/week08/week08-docker-compose.pdf
+presentations/lectures/week09/week09-cicd.pdf
