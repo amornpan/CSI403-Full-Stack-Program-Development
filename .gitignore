@@ -1,0 +1,257 @@
+# =====================================
+# Full-Stack-RAG-with-Local-LLM
+# .gitignore
+# =====================================
+
+# =====================================
+# Presentations - Keep only PDF
+# =====================================
+
+# Lectures - ignore everything except PDF
+presentations/lectures/**/*
+!presentations/lectures/
+!presentations/lectures/*/
+!presentations/lectures/**/*.pdf
+
+# Labs - ignore everything except PDF
+presentations/labs/**/*
+!presentations/labs/
+!presentations/labs/*/
+!presentations/labs/**/*.pdf
+
+# Videos - ignore completely
+presentations/videos/
+
+# =====================================
+# LaTeX Build Files
+# =====================================
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.lol
+*.run.xml
+*.bcf
+*.xdv
+*-blx.bib
+*.tex
+
+# =====================================
+# Python
+# =====================================
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+ENV/
+.venv/
+.env/
+.conda/
+*.conda
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IPython
+profile_default/
+ipython_config.py
+
+# =====================================
+# Environment Variables
+# =====================================
+.env
+.env.local
+.env.*.local
+*.env
+.envrc
+
+# =====================================
+# IDE / Editors
+# =====================================
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# =====================================
+# OS Generated Files
+# =====================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =====================================
+# Docker
+# =====================================
+docker-compose.override.yml
+.docker/
+
+# =====================================
+# Logs and Databases
+# =====================================
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# =====================================
+# ML / AI Models (Large Files)
+# =====================================
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.model
+*.pt
+*.pth
+*.onnx
+*.pb
+*.tflite
+models/
+checkpoints/
+.cache/
+huggingface/
+
+# =====================================
+# OpenSearch / Ollama
+# =====================================
+opensearch-data/
+elasticsearch-data/
+.ollama/
+
+# =====================================
+# Streamlit
+# =====================================
+.streamlit/secrets.toml
+
+# =====================================
+# Temporary Files
+# =====================================
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+tmp/
+temp/
+
+# =====================================
+# Archives
+# =====================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# =====================================
+# Secrets / Credentials
+# =====================================
+secrets/
+credentials/
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+api_keys.txt
+secrets.yaml
+secrets.json
+
+# =====================================
+# Node.js (if any)
+# =====================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# =====================================
+# Miscellaneous
+# =====================================
+local_settings.py
+local_config.py
+test_output/
+test_results/
+*.exe
+*.dll
+*.so
+*.dylib
