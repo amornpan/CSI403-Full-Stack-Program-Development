@@ -1,4 +1,0 @@
-\beamer@sectionintoc {1}{Docker Fundamentals}{3}{0}{1}
-\beamer@sectionintoc {2}{Vector Database}{5}{0}{2}
-\beamer@sectionintoc {3}{OpenSearch Setup}{6}{0}{3}
-\beamer@sectionintoc {4}{Lab 2}{7}{0}{4}

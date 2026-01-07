@@ -1,3 +1,0 @@
-\beamer@sectionintoc {1}{REST API}{3}{0}{1}
-\beamer@sectionintoc {2}{FastAPI}{4}{0}{2}
-\beamer@sectionintoc {3}{Quiz 1 + Lab 3}{6}{0}{3}

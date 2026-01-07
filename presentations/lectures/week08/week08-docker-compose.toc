@@ -1,3 +1,0 @@
-\beamer@sectionintoc {1}{Docker Compose}{3}{0}{1}
-\beamer@sectionintoc {2}{6 Services}{5}{0}{2}
-\beamer@sectionintoc {3}{Quiz 3 + Lab 7}{7}{0}{3}

@@ -20,7 +20,7 @@ presentations/labs/**/*
 !presentations/labs/**/*.pdf
 
 # Videos - ignore completely
-presentations/videos/
+presentations/videos/*
 
 # =====================================
 # LaTeX Build Files

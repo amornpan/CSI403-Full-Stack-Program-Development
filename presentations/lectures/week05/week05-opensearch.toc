@@ -1,3 +1,0 @@
-\beamer@sectionintoc {1}{Vector Search}{3}{0}{1}
-\beamer@sectionintoc {2}{OpenSearch Client}{4}{0}{2}
-\beamer@sectionintoc {3}{Lab 4}{6}{0}{3}
