@@ -7,47 +7,59 @@
 # Presentations - Keep only PDF
 # =====================================
 
-# Lectures - ignore everything except PDF
-presentations/lectures/**/*
-!presentations/lectures/
-!presentations/lectures/*/
-!presentations/lectures/**/*.pdf
-
-# Labs - ignore everything except PDF
-presentations/labs/**/*
-!presentations/labs/
-!presentations/labs/*/
-!presentations/labs/**/*.pdf
-
 # Videos - ignore completely
-presentations/videos/*
+presentations/videos/
 
-# =====================================
-# LaTeX Build Files
-# =====================================
-*.aux
-*.log
-*.nav
-*.out
-*.snm
-*.toc
-*.vrb
-*.synctex.gz
-*.fls
-*.fdb_latexmk
-*.bbl
-*.blg
-*.idx
-*.ilg
-*.ind
-*.lof
-*.lot
-*.lol
-*.run.xml
-*.bcf
-*.xdv
-*-blx.bib
-*.tex
+# Ignore non-PDF files in lectures and labs
+presentations/lectures/**/*.tex
+presentations/lectures/**/*.aux
+presentations/lectures/**/*.log
+presentations/lectures/**/*.nav
+presentations/lectures/**/*.out
+presentations/lectures/**/*.snm
+presentations/lectures/**/*.toc
+presentations/lectures/**/*.vrb
+presentations/lectures/**/*.synctex.gz
+presentations/lectures/**/*.fls
+presentations/lectures/**/*.fdb_latexmk
+presentations/lectures/**/*.bbl
+presentations/lectures/**/*.blg
+presentations/lectures/**/*.pptx
+presentations/lectures/**/*.ppt
+presentations/lectures/**/*.docx
+presentations/lectures/**/*.doc
+presentations/lectures/**/*.mp4
+presentations/lectures/**/*.mov
+presentations/lectures/**/*.avi
+presentations/lectures/**/*.png
+presentations/lectures/**/*.jpg
+presentations/lectures/**/*.jpeg
+presentations/lectures/**/*.gif
+
+presentations/labs/**/*.tex
+presentations/labs/**/*.aux
+presentations/labs/**/*.log
+presentations/labs/**/*.nav
+presentations/labs/**/*.out
+presentations/labs/**/*.snm
+presentations/labs/**/*.toc
+presentations/labs/**/*.vrb
+presentations/labs/**/*.synctex.gz
+presentations/labs/**/*.fls
+presentations/labs/**/*.fdb_latexmk
+presentations/labs/**/*.bbl
+presentations/labs/**/*.blg
+presentations/labs/**/*.pptx
+presentations/labs/**/*.ppt
+presentations/labs/**/*.docx
+presentations/labs/**/*.doc
+presentations/labs/**/*.mp4
+presentations/labs/**/*.mov
+presentations/labs/**/*.avi
+presentations/labs/**/*.png
+presentations/labs/**/*.jpg
+presentations/labs/**/*.jpeg
+presentations/labs/**/*.gif
 
 # =====================================
 # Python
@@ -255,9 +267,3 @@ test_results/
 *.dll
 *.so
 *.dylib
-
-
-presentations/README.md
-presentations/VIDEO_GENERATOR_README.md
-presentations/build-all.bat
-presentations/quizzes_with_explanations.md
