@@ -1,0 +1,18 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Install dependencies
+RUN pip install --no-cache-dir \
+    opensearch-py \
+    sentence-transformers \
+    torch
+
+# Copy application
+COPY embedding.py .
+COPY embedding_model.py .
+COPY document_processor.py .
+COPY opensearch_client.py .
+
+# Run embedding on startup
+CMD ["python", "embedding.py"]
