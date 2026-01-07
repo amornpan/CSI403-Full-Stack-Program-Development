@@ -39,14 +39,28 @@ presentations/lectures/**/*.bbl
 presentations/lectures/**/*.blg
 
 # =====================================
-# Labs - Keep only lab01-08.pdf
+# Labs - Keep only lab01-08.pdf in tex/pdf/
 # =====================================
-
-# Ignore tex folder (source files, audio, images, videos, scripts)
-presentations/labs/tex/
 
 # Ignore lab README files
 presentations/labs/**/README.md
+
+# Ignore tex source files
+presentations/labs/tex/*.tex
+presentations/labs/tex/*.bat
+presentations/labs/tex/*.py
+
+# Ignore audio folder
+presentations/labs/tex/audio/
+
+# Ignore images folder
+presentations/labs/tex/images/
+
+# Ignore videos folder
+presentations/labs/tex/videos/
+
+# Ignore labs_all.pdf (keep only lab01-08)
+presentations/labs/tex/pdf/labs_all.pdf
 
 # =====================================
 # Python
