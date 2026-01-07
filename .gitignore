@@ -4,13 +4,26 @@
 # =====================================
 
 # =====================================
-# Presentations - Keep only PDF
+# Presentations
 # =====================================
 
-# Videos - ignore completely
-presentations/videos/
+# Ignore build-all.bat at presentations root
+presentations/build-all.bat
 
-# Ignore non-PDF files in lectures and labs
+# Ignore common folder
+presentations/common/
+
+# Ignore README and MD files in presentations
+presentations/*.md
+
+# =====================================
+# Lectures - Keep only PDF in week folders
+# =====================================
+
+# Ignore videos folder completely
+presentations/lectures/videos/
+
+# Ignore all non-PDF files in week folders
 presentations/lectures/**/*.tex
 presentations/lectures/**/*.aux
 presentations/lectures/**/*.log
@@ -24,42 +37,16 @@ presentations/lectures/**/*.fls
 presentations/lectures/**/*.fdb_latexmk
 presentations/lectures/**/*.bbl
 presentations/lectures/**/*.blg
-presentations/lectures/**/*.pptx
-presentations/lectures/**/*.ppt
-presentations/lectures/**/*.docx
-presentations/lectures/**/*.doc
-presentations/lectures/**/*.mp4
-presentations/lectures/**/*.mov
-presentations/lectures/**/*.avi
-presentations/lectures/**/*.png
-presentations/lectures/**/*.jpg
-presentations/lectures/**/*.jpeg
-presentations/lectures/**/*.gif
 
-presentations/labs/**/*.tex
-presentations/labs/**/*.aux
-presentations/labs/**/*.log
-presentations/labs/**/*.nav
-presentations/labs/**/*.out
-presentations/labs/**/*.snm
-presentations/labs/**/*.toc
-presentations/labs/**/*.vrb
-presentations/labs/**/*.synctex.gz
-presentations/labs/**/*.fls
-presentations/labs/**/*.fdb_latexmk
-presentations/labs/**/*.bbl
-presentations/labs/**/*.blg
-presentations/labs/**/*.pptx
-presentations/labs/**/*.ppt
-presentations/labs/**/*.docx
-presentations/labs/**/*.doc
-presentations/labs/**/*.mp4
-presentations/labs/**/*.mov
-presentations/labs/**/*.avi
-presentations/labs/**/*.png
-presentations/labs/**/*.jpg
-presentations/labs/**/*.jpeg
-presentations/labs/**/*.gif
+# =====================================
+# Labs - Keep only lab01-08.pdf
+# =====================================
+
+# Ignore tex folder (source files, audio, images, videos, scripts)
+presentations/labs/tex/
+
+# Ignore lab README files
+presentations/labs/**/README.md
 
 # =====================================
 # Python
