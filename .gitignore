@@ -288,7 +288,13 @@ presentations/lectures/week07/week07-rag-llm-streamlit.pdf
 presentations/lectures/week08/week08-docker-compose.pdf
 presentations/lectures/week09/week09-cicd.pdf
 
-src/
+src/week03-docker-opensearch/
+src/week04-fastapi/
+src/week05-opensearch-integration/
+src/week06-embeddings/
+src/week07-rag-llm-streamlit/
+src/week08-docker-compose/
+src/week09-cicd/
 
 github-classroom/
 github-classroom/template-week03-docker-opensearch/
