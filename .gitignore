@@ -1,0 +1,299 @@
+# =====================================
+# Full-Stack-RAG-with-Local-LLM
+# .gitignore
+# =====================================
+
+# =====================================
+# Presentations
+# =====================================
+
+# Ignore build-all.bat at presentations root
+presentations/build-all.bat
+
+# Ignore common folder
+presentations/common/
+
+# Ignore README and MD files in presentations
+presentations/*.md
+
+# =====================================
+# Lectures - Keep only PDF in week folders
+# =====================================
+
+# Ignore videos folder completely
+presentations/lectures/videos/
+
+# Ignore all non-PDF files in week folders
+presentations/lectures/**/*.tex
+presentations/lectures/**/*.aux
+presentations/lectures/**/*.log
+presentations/lectures/**/*.nav
+presentations/lectures/**/*.out
+presentations/lectures/**/*.snm
+presentations/lectures/**/*.toc
+presentations/lectures/**/*.vrb
+presentations/lectures/**/*.synctex.gz
+presentations/lectures/**/*.fls
+presentations/lectures/**/*.fdb_latexmk
+presentations/lectures/**/*.bbl
+presentations/lectures/**/*.blg
+
+# =====================================
+# Labs - Keep only lab01-08.pdf in tex/pdf/
+# =====================================
+
+# Ignore lab README files
+presentations/labs/**/README.md
+
+# Ignore tex source files
+presentations/labs/tex/*.tex
+presentations/labs/tex/*.bat
+presentations/labs/tex/*.py
+
+# Ignore audio folder
+presentations/labs/tex/audio/
+
+# Ignore images folder
+presentations/labs/tex/images/
+
+# Ignore videos folder
+presentations/labs/tex/videos/
+
+# Ignore labs_all.pdf (keep only lab01-08)
+presentations/labs/tex/pdf/labs_all.pdf
+
+# =====================================
+# Python
+# =====================================
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+ENV/
+.venv/
+.env/
+.conda/
+*.conda
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IPython
+profile_default/
+ipython_config.py
+
+# =====================================
+# Environment Variables
+# =====================================
+.env
+.env.local
+.env.*.local
+*.env
+.envrc
+
+# =====================================
+# IDE / Editors
+# =====================================
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# =====================================
+# OS Generated Files
+# =====================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# =====================================
+# Docker
+# =====================================
+docker-compose.override.yml
+.docker/
+
+# =====================================
+# Logs and Databases
+# =====================================
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# =====================================
+# ML / AI Models (Large Files)
+# =====================================
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.joblib
+*.model
+*.pt
+*.pth
+*.onnx
+*.pb
+*.tflite
+models/
+checkpoints/
+.cache/
+huggingface/
+
+# =====================================
+# OpenSearch / Ollama
+# =====================================
+opensearch-data/
+elasticsearch-data/
+.ollama/
+
+# =====================================
+# Streamlit
+# =====================================
+.streamlit/secrets.toml
+
+# =====================================
+# Temporary Files
+# =====================================
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+tmp/
+temp/
+
+# =====================================
+# Archives
+# =====================================
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# =====================================
+# Secrets / Credentials
+# =====================================
+secrets/
+credentials/
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+api_keys.txt
+secrets.yaml
+secrets.json
+
+# =====================================
+# Node.js (if any)
+# =====================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# =====================================
+# Miscellaneous
+# =====================================
+local_settings.py
+local_config.py
+test_output/
+test_results/
+*.exe
+*.dll
+*.so
+*.dylib
+
+
+#presentations/labs/tex/pdf/lab02.pdf
+presentations/labs/tex/pdf/lab03.pdf
+presentations/labs/tex/pdf/lab04.pdf
+presentations/labs/tex/pdf/lab05.pdf
+presentations/labs/tex/pdf/lab06.pdf
+presentations/labs/tex/pdf/lab07.pdf
+presentations/labs/tex/pdf/lab08.pdf
+
+
+#presentations/lectures/week02/week02-git-python.pdf
+presentations/lectures/week03/week03-docker-opensearch.pdf
+presentations/lectures/week04/week04-fastapi.pdf
+presentations/lectures/week05/week05-opensearch.pdf
+presentations/lectures/week06/week06-embeddings.pdf
+presentations/lectures/week07/week07-rag-llm-streamlit.pdf
+presentations/lectures/week08/week08-docker-compose.pdf
+presentations/lectures/week09/week09-cicd.pdf
+
+src/
+
+github-classroom/template-week03-docker-opensearch/
+github-classroom/template-week04-fastapi/
+github-classroom/template-week05-opensearch-integration/
+github-classroom/template-week06-embeddings/
+github-classroom/template-week07-rag-llm-streamlit/
+github-classroom/template-week08-docker-compose/
+github-classroom/template-week09-cicd/
