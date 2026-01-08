@@ -1,0 +1,78 @@
+# Week 03: Docker Compose for OpenSearch
+# =============================================
+# นักศึกษาต้องทำตาม TODO ที่กำหนด
+
+version: '3.8'
+
+services:
+  # ===========================================
+  # OpenSearch - Vector Database
+  # ===========================================
+  opensearch:
+    image: opensearchproject/opensearch:2.11.1
+    container_name: opensearch-node
+    
+    # TODO 1: กำหนด environment variables (15 คะแนน)
+    # ต้องมี:
+    # - discovery.type=single-node
+    # - bootstrap.memory_lock=true
+    # - OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g
+    # - DISABLE_INSTALL_DEMO_CONFIG=true
+    # - DISABLE_SECURITY_PLUGIN=true
+    environment:
+      # เขียน environment variables ด้านล่างนี้:
+      - TODO=REPLACE_ME
+    
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    
+    # TODO 2: กำหนด ports mapping (10 คะแนน)
+    # ต้อง map:
+    # - 9200:9200 (REST API)
+    # - 9600:9600 (Performance Analyzer)
+    ports:
+      # เขียน ports mapping ด้านล่างนี้:
+      - "TODO:TODO"
+    
+    networks:
+      - rag-network
+    
+    # TODO 3: กำหนด healthcheck (15 คะแนน)
+    # ต้องมี:
+    # - test: curl -f http://localhost:9200
+    # - interval: 30s
+    # - timeout: 10s
+    # - retries: 5
+    healthcheck:
+      # เขียน healthcheck ด้านล่างนี้:
+      test: ["CMD", "echo", "TODO"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # TODO 4: เพิ่ม OpenSearch Dashboards service (ไม่มีคะแนน - optional)
+  # Hint: ดูตัวอย่างจาก OpenSearch documentation
+  # - image: opensearchproject/opensearch-dashboards:2.11.1
+  # - port: 5601
+  # - depends_on: opensearch
+
+# ===========================================
+# Volumes
+# ===========================================
+volumes:
+  opensearch-data:
+
+# ===========================================
+# Networks
+# ===========================================
+networks:
+  rag-network:
+    driver: bridge
