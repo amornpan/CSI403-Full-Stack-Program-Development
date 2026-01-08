@@ -1,10 +1,11 @@
-# Lab 01: Git + Python Fundamentals
+# Week 02: Git + Python Fundamentals (Lab 01)
 
 ## 📋 ข้อมูลทั่วไป
 
 | หัวข้อ | รายละเอียด |
 |--------|------------|
 | **วิชา** | CSI403 - Full Stack RAG with Local LLM |
+| **Week** | Week 02 |
 | **Lab** | Lab 01 |
 | **หัวข้อ** | Git + Python Fundamentals |
 | **คะแนน** | 3.75% |
@@ -64,7 +65,7 @@ docs: update README with usage examples
 
 ```bash
 git clone <URL ของ repo คุณ>
-cd lab01-git-python-<username>
+cd week02-git-python-<username>
 ```
 
 ### ขั้นตอนที่ 2: สร้าง Virtual Environment (แนะนำ)
