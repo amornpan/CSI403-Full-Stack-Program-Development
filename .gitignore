@@ -290,6 +290,7 @@ presentations/lectures/week09/week09-cicd.pdf
 
 src/
 
+github-classroom/
 github-classroom/template-week03-docker-opensearch/
 github-classroom/template-week04-fastapi/
 github-classroom/template-week05-opensearch-integration/
