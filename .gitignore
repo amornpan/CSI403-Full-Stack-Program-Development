@@ -300,4 +300,4 @@ src/week09-cicd/
 # GitHub Classroom - Track only template-lab01-dictionary
 # =====================================
 github-classroom/*
-!github-classroom/template-lab01-dictionary/
+#!github-classroom/template-lab01-dictionary/
