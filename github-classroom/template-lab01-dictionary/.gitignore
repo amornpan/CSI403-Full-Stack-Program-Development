@@ -1,0 +1,43 @@
+# ===========================================
+# CSI403 Lab .gitignore
+# ===========================================
+
+# ----------- Python -----------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ----------- Jupyter Notebook -----------
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# ----------- Virtual Environment -----------
+venv/
+env/
+.venv/
+
+# ----------- IDE / Editor -----------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ----------- Testing -----------
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ----------- OS Files -----------
+.DS_Store
+Thumbs.db
+
+# ----------- LaTeX -----------
+*.aux
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.synctex.gz

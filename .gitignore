@@ -296,11 +296,8 @@ src/week07-rag-llm-streamlit/
 src/week08-docker-compose/
 src/week09-cicd/
 
-github-classroom/
-github-classroom/template-week03-docker-opensearch/
-github-classroom/template-week04-fastapi/
-github-classroom/template-week05-opensearch-integration/
-github-classroom/template-week06-embeddings/
-github-classroom/template-week07-rag-llm-streamlit/
-github-classroom/template-week08-docker-compose/
-github-classroom/template-week09-cicd/
+# =====================================
+# GitHub Classroom - Track only template-lab01-dictionary
+# =====================================
+github-classroom/*
+!github-classroom/template-lab01-dictionary/
