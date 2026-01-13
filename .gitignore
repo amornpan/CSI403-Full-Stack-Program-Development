@@ -270,7 +270,7 @@ test_results/
 *.dylib
 
 
-#presentations/labs/tex/pdf/lab02.pdf
+presentations/labs/tex/pdf/lab02.pdf
 presentations/labs/tex/pdf/lab03.pdf
 presentations/labs/tex/pdf/lab04.pdf
 presentations/labs/tex/pdf/lab05.pdf
