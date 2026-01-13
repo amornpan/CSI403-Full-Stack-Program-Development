@@ -269,7 +269,7 @@ test_results/
 *.so
 *.dylib
 
-
+presentations/labs/tex/pdf/lab01.pdf
 presentations/labs/tex/pdf/lab02.pdf
 presentations/labs/tex/pdf/lab03.pdf
 presentations/labs/tex/pdf/lab04.pdf
